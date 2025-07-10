@@ -1,0 +1,54 @@
+{
+  "name": "custom-raydium-pool-project",
+  "version": "1.0.0",
+  "description": "自建 Raydium 池子的完整 DeFi 开发学习项目",
+  "main": "src/raydiumSwap.ts",
+  "scripts": {
+    "start": "npx ts-node src/raydiumSwap.ts",
+    "debug:fee": "npx ts-node src/debugging/raydiumFeeDebugger.ts",
+    "analyze:fee": "npx ts-node src/debugging/raydiumFeeAnalysis.ts",
+    "fix:final": "npx ts-node src/debugging/finalRaydiumFix.ts",
+    "demo": "npx ts-node src/demo/selfBuiltPoolSwapDemo.ts",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "solana",
+    "defi",
+    "raydium",
+    "amm",
+    "openbook",
+    "liquidity-pool",
+    "swap",
+    "blockchain",
+    "typescript"
+  ],
+  "author": "DeFi Developer",
+  "license": "MIT",
+  "dependencies": {
+    "@solana/web3.js": "^1.87.6",
+    "@solana/spl-token": "^0.3.9",
+    "@raydium-io/raydium-sdk": "^1.3.1-beta.58",
+    "@openbook-dex/openbook-v2": "^0.2.7",
+    "@coral-xyz/anchor": "^0.29.0",
+    "bn.js": "^5.2.1",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.4",
+    "@types/bn.js": "^5.1.5",
+    "typescript": "^5.3.3",
+    "ts-node": "^10.9.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/custom-raydium-pool-project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/custom-raydium-pool-project/issues"
+  },
+  "homepage": "https://github.com/your-username/custom-raydium-pool-project#readme"
+}
