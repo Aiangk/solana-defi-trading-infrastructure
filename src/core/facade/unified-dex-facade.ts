@@ -242,3 +242,6 @@ export interface PerformanceStats {
         end: Date;
     };
 }
+
+// 导出别名以保持向后兼容
+export { IUnifiedDexFacade as UnifiedDexFacade };

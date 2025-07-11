@@ -202,6 +202,15 @@ export function getJitoConfig(environment: 'production' |
     }
 }
 
+/**
+ * 创建 Jito 配置 (别名函数，保持向后兼容)
+ * @param environment 环境类型
+ * @returns Jito配置
+ */
+export function createJitoConfig(environment: 'production' | 'development' = 'production'): JitoConfig {
+    return getJitoConfig(environment);
+}
+
 // 小费策略预设
 export const TIP_STRATEGY = {
     // 低优先级：适用于非紧急交易

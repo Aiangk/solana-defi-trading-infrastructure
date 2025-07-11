@@ -19,7 +19,7 @@ import { Wallet } from '@coral-xyz/anchor';
 import BN from 'bn.js';
 
 // 导入核心组件
-import { UnifiedDexFacade } from '../../core/facade/unified-dex-facade';
+import { IUnifiedDexFacade } from '../../core/facade/unified-dex-facade';
 import { BundleManager } from '../../core/jito/bundle-manager';
 import { JitoClient } from '../../core/jito/jito-client';
 import { RouteAnalyzer } from '../../utils/performance/route-analyzer';
@@ -40,7 +40,7 @@ interface TestResult {
  * 展现企业级系统的健壮性和可靠性
  */
 export class SystemReliabilityTest {
-    private facade: UnifiedDexFacade | null = null;
+    private facade: IUnifiedDexFacade | null = null;
     private testResults: TestResult[] = [];
     private startTime: number = 0;
 
@@ -265,11 +265,11 @@ export class SystemReliabilityTest {
     private async testRpcTimeout(): Promise<boolean> {
         // 模拟RPC超时场景
         console.log('   测试RPC超时处理...');
-        
+
         try {
             // 这里可以实现具体的超时测试逻辑
             // 例如：设置极短的超时时间，验证系统的处理
-            
+
             await new Promise(resolve => setTimeout(resolve, 100)); // 模拟测试
             return true;
         } catch (error) {
@@ -280,7 +280,7 @@ export class SystemReliabilityTest {
 
     private async testRpcFailover(): Promise<boolean> {
         console.log('   测试RPC节点切换...');
-        
+
         try {
             // 模拟主RPC节点失败，测试备用节点切换
             await new Promise(resolve => setTimeout(resolve, 100));
@@ -292,7 +292,7 @@ export class SystemReliabilityTest {
 
     private async testNetworkCongestion(): Promise<boolean> {
         console.log('   测试网络拥堵处理...');
-        
+
         try {
             // 模拟网络拥堵场景
             await new Promise(resolve => setTimeout(resolve, 100));
@@ -304,7 +304,7 @@ export class SystemReliabilityTest {
 
     private async testConnectionRetry(): Promise<boolean> {
         console.log('   测试连接重试机制...');
-        
+
         try {
             // 测试指数退避重试机制
             await new Promise(resolve => setTimeout(resolve, 100));
@@ -316,7 +316,7 @@ export class SystemReliabilityTest {
 
     private async testInvalidInputHandling(): Promise<boolean> {
         console.log('   测试无效输入处理...');
-        
+
         try {
             // 测试各种无效输入的处理
             await new Promise(resolve => setTimeout(resolve, 50));
@@ -348,18 +348,18 @@ export class SystemReliabilityTest {
 
     private async testConcurrentQuoteRequests(): Promise<boolean> {
         console.log('   测试并发报价请求...');
-        
+
         const startTime = Date.now();
-        
+
         // 模拟100个并发报价请求
         const promises = Array.from({ length: 100 }, async (_, i) => {
             await new Promise(resolve => setTimeout(resolve, Math.random() * 100));
             return { id: i, success: true };
         });
-        
+
         const results = await Promise.all(promises);
         const duration = Date.now() - startTime;
-        
+
         console.log(`   并发处理100个请求，耗时: ${duration}ms`);
         return results.every(r => r.success);
     }
@@ -371,37 +371,37 @@ export class SystemReliabilityTest {
 
     private async testMemoryUsage(): Promise<boolean> {
         console.log('   测试内存使用监控...');
-        
+
         const memBefore = process.memoryUsage();
-        
+
         // 模拟内存密集操作
         const data = Array.from({ length: 10000 }, (_, i) => ({ id: i, data: 'test'.repeat(100) }));
-        
+
         const memAfter = process.memoryUsage();
         const memDiff = memAfter.heapUsed - memBefore.heapUsed;
-        
+
         console.log(`   内存使用增长: ${(memDiff / 1024 / 1024).toFixed(2)} MB`);
-        
+
         // 清理
         data.length = 0;
-        
+
         return memDiff < 50 * 1024 * 1024; // 小于50MB认为正常
     }
 
     private async testResponseTime(): Promise<boolean> {
         console.log('   测试响应时间...');
-        
+
         const times: number[] = [];
-        
+
         for (let i = 0; i < 10; i++) {
             const start = Date.now();
             await new Promise(resolve => setTimeout(resolve, Math.random() * 100));
             times.push(Date.now() - start);
         }
-        
+
         const avgTime = times.reduce((a, b) => a + b, 0) / times.length;
         console.log(`   平均响应时间: ${avgTime.toFixed(2)}ms`);
-        
+
         return avgTime < 500; // 小于500ms认为正常
     }
 
@@ -452,30 +452,30 @@ export class SystemReliabilityTest {
      */
     private async runSingleTest(testName: string, testFn: () => Promise<boolean>): Promise<void> {
         const startTime = Date.now();
-        
+
         try {
             const passed = await testFn();
             const duration = Date.now() - startTime;
-            
+
             this.testResults.push({
                 testName,
                 passed,
                 duration,
                 details: passed ? '✅ 通过' : '❌ 失败'
             });
-            
+
             console.log(`   ${passed ? '✅' : '❌'} ${testName} (${duration}ms)`);
-            
+
         } catch (error) {
             const duration = Date.now() - startTime;
-            
+
             this.testResults.push({
                 testName,
                 passed: false,
                 duration,
                 details: `❌ 异常: ${error}`
             });
-            
+
             console.log(`   ❌ ${testName} - 异常: ${error} (${duration}ms)`);
         }
     }

@@ -12,11 +12,11 @@
 
 import { PublicKey } from '@solana/web3.js';
 import BN from 'bn.js';
-import { 
-    RouteAnalyzer, 
-    RouteOption, 
+import {
+    RouteAnalyzer,
+    RouteOption,
     ROUTING_STRATEGIES,
-    RouteMetrics 
+    RouteMetrics
 } from '../utils/performance/route-analyzer';
 
 /**
@@ -38,6 +38,12 @@ export class RouteAnalysisDemo {
      */
     async runFullDemo(): Promise<void> {
         console.log('🚀 智能路由分析演示开始...\n');
+
+        console.log('📋 演示说明:');
+        console.log('   本演示展示项目的智能路由算法');
+        console.log('   模拟交易: 0.001 SOL → USDC');
+        console.log('   使用真实的算法逻辑和评估标准');
+        console.log('   如需查看真实交易，请运行: npm run demo:simple-swap\n');
 
         // 1. 展示多维度路径评估
         await this.demonstrateMultiDimensionalAnalysis();

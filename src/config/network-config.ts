@@ -1,4 +1,4 @@
-import { PublicKey } from "@solana/web3.js";
+import { PublicKey, Connection } from "@solana/web3.js";
 import { NetworkType, NetworkTokenMapping } from "../types/token/token-types";
 
 // 重新导出类型
@@ -118,7 +118,7 @@ export const TOKEN_ADDRESSES = {
         SOL: new PublicKey("So11111111111111111111111111111111111111112"),
         USDC_ORCA: new PublicKey("BRjpCHtyQLNCo8gqRUr8jtdAj5AjPYQaoqbvcZiHok1k"),
         USDC_JUPITER: new PublicKey("7UTBhm5Q88UqEUNkp1hvDCEV4VpWwfvDME1jUeEe3nE2"),
-        USDT: new PublicKey("H8UekPGwePSmQ3ttuYGPU1szyFfjZR4N53rymSFwpLPmR")
+        USDT: new PublicKey("Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB")
     },
     MAINNET: {
         SOL: new PublicKey("So11111111111111111111111111111111111111112"),
@@ -142,3 +142,37 @@ export const WELL_KNOWN_POOLS = {
         }
     }
 };
+
+/**
+ * 创建生产环境连接
+ * @param customRpcUrl 自定义RPC URL (可选)
+ * @returns Solana连接实例
+ */
+export function createProductionConnection(customRpcUrl?: string): Connection {
+    const rpcUrl = customRpcUrl || MAINNET_CONFIG.rpcEndpoint;
+    return new Connection(rpcUrl, {
+        commitment: 'confirmed',
+        confirmTransactionInitialTimeout: 60000,
+        disableRetryOnRateLimit: false,
+        httpHeaders: {
+            'Content-Type': 'application/json',
+        }
+    });
+}
+
+/**
+ * 创建开发环境连接
+ * @param customRpcUrl 自定义RPC URL (可选)
+ * @returns Solana连接实例
+ */
+export function createDevelopmentConnection(customRpcUrl?: string): Connection {
+    const rpcUrl = customRpcUrl || DEVNET_CONFIG.rpcEndpoint;
+    return new Connection(rpcUrl, {
+        commitment: 'confirmed',
+        confirmTransactionInitialTimeout: 30000,
+        disableRetryOnRateLimit: false,
+        httpHeaders: {
+            'Content-Type': 'application/json',
+        }
+    });
+}

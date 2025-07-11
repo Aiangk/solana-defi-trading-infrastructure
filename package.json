@@ -14,6 +14,9 @@
     "demo:routing": "ts-node src/examples/route-analysis-demo.ts",
     "demo:scenario": "ts-node src/examples/scenario-demo.ts",
     "demo:production": "ts-node src/examples/production-demo.ts",
+    "demo:real-swap": "ts-node src/examples/real-swap-demo.ts",
+    "demo:simple-swap": "ENABLE_REAL_TRADING=true ts-node src/examples/simple-real-swap.ts",
+    "demo:sol-transfer": "ENABLE_REAL_TRADING=true ts-node src/examples/simple-sol-transfer.ts",
     "lint": "eslint src/**/*.ts",
     "clean": "rm -rf dist",
     "prepublish": "npm run clean && npm run build"
@@ -44,7 +47,6 @@
     "@solana/spl-token": "^0.4.13",
     "@solana/web3.js": "^1.98.2",
     "@types/bs58": "^4.0.4",
-    "@types/node": "^24.0.7",
     "axios": "^1.10.0",
     "bn.js": "^5.2.2",
     "bs58": "^6.0.0",
@@ -58,6 +60,7 @@
     "typescript": "^5.8.3"
   },
   "devDependencies": {
-    "@types/bn.js": "^5.2.0"
+    "@types/bn.js": "^5.2.0",
+    "@types/node": "^20.19.7"
   }
 }

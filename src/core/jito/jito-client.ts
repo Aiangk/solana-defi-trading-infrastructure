@@ -1127,3 +1127,6 @@ export class EnhancedJitoClient {
         }
     }
 }
+
+// 导出别名以保持向后兼容
+export { EnhancedJitoClient as JitoClient };
