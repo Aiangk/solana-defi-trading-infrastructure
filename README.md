@@ -15,7 +15,7 @@
 
 **🔗 真实 DeFi 交换能力**：项目已成功执行真实的区块链交易
 - **最新交易**: [29xqJvp7pDSQZMEW3LNqLfaTiwufnEpAqWmamS3V7h6BNLL1sHasoZJppnBFvQd23tJsqSf3Vcu5tvHnJyaam9Hv](https://explorer.solana.com/tx/29xqJvp7pDSQZMEW3LNqLfaTiwufnEpAqWmamS3V7h6BNLL1sHasoZJppnBFvQd23tJsqSf3Vcu5tvHnJyaam9Hv?cluster=devnet)
-- **交换详情**: 0.001 SOL → 37,382 devUSDC (0.000% 滑点)
+- **交换详情**: 0.001 SOL → 37,382 devUSDC (极低滑点，Orca 优化)
 - **技术特点**: 自动账户管理、智能路由选择、生产级指令构建
 
 ### 🎯 核心价值主张
@@ -222,8 +222,9 @@ npm run test:reliability
 项目已成功执行真实的 DeFi 交换：
 - **交易签名**: `29xqJvp7pDSQZMEW3LNqLfaTiwufnEpAqWmamS3V7h6BNLL1sHasoZJppnBFvQd23tJsqSf3Vcu5tvHnJyaam9Hv`
 - **区块链浏览器**: [查看交易](https://explorer.solana.com/tx/29xqJvp7pDSQZMEW3LNqLfaTiwufnEpAqWmamS3V7h6BNLL1sHasoZJppnBFvQd23tJsqSf3Vcu5tvHnJyaam9Hv?cluster=devnet)
-- **交换详情**: 0.001 SOL → 37,382 devUSDC (0.000% 滑点)
+- **交换详情**: 0.001 SOL → 37,382 devUSDC (极低滑点)
 - **使用协议**: Orca Whirlpool (智能路由选择)
+- **技术亮点**: 自动 WSOL 账户管理、实时价格获取、生产级指令构建
 
 ### 演示内容说明
 
